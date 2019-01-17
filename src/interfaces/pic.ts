@@ -1,6 +1,13 @@
-export interface Pic {
+export interface Media {
+  file_id: string;
+  filename: string;
+  filesize: number;
   title: string;
-  details: string;
-  thumbnail: string;
-  original: string;
+  description: string;
+  user_id: string;
+  media_type: string;
+  mime_type: string;
+  time_added: string;
+  screenshot?: string;
+  thumbnails?: object;
 }
