@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MediaProvider } from '../../providers/media/media';
 import { Media } from '../../interfaces/pic';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -9,26 +9,36 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomePage {
 
-  mediaApi: string = ' http://media.mw.metropolia.fi/wbma/';
-  mediaArray: Media [] = [];
+  mediaArray: Media[] = [];
 
-  constructor(private http: HttpClient, public navCtrl: NavController) {
+  constructor(
+    private mediaProvider: MediaProvider, public navCtrl: NavController) {
 
   }
 
-  ngOnInit() {
-    this.getImagesFromServer();
+  ionViewDidLoad() {
+    this.getAllFiles();
   }
 
-  getImagesFromServer() {
-    this.http.get<Media[]>(this.mediaApi + 'media').subscribe(
-      (result: Media[]) => {
-        this.mediaArray = result;
-      },
-      (error) => {
-        console.log(error);
+  getAllFiles() {
+    this.mediaProvider.getAllMedia().subscribe((result: Media[]) => {
+        this.mediaArray = result.map((pic: Media) => {
+          // add thumbnails property to pic
+
+          const nameArray = pic.filename.split('.')[0];
+
+          pic.thumbnails = {
+            160: nameArray + '-tn160.png',
+          };
+          console.log('pic.thumbnails', pic);
+          return pic;
+
+        });
+      }, (err) => {
+        console.log(err);
       },
     );
-
   }
+
 }
+
