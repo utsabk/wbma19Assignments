@@ -27,6 +27,7 @@ export class HomePage {
           this.mediaProvider.getSingleMedia(pic.file_id).
             subscribe((file: Media) => {
               this.mediaArray.push(file);
+              console.log(file);
             });
         });
       }, (err) => {
