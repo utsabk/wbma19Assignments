@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { LoginRegisterPage } from '../login-register/login-register';
 
 /**
  * Generated class for the LogoutPage page.
@@ -19,6 +20,10 @@ export class LogoutPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LogoutPage');
+  }
+
+  logout() {
+ this.navCtrl.setRoot(LoginRegisterPage);
   }
 
 }

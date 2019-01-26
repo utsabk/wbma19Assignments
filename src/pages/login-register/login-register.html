@@ -26,4 +26,21 @@
     </ion-item>
     <button ion-button block color="primary" type="submit">Login</button>
   </form>
+
+  <form (ngSubmit)="register()">
+    <ion-item>
+      <ion-label color="secondary">Username</ion-label>
+      <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="secondary">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+    </ion-item>
+    <button ion-button block color="primary" type="submit">Register</button>
+  </form>
+
 </ion-content>

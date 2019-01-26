@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
-import { LoginResponse, User } from '../../interfaces/user';
+import { LoginResponse, RegisterResponse, User } from '../../interfaces/user';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginRegisterPage page.
@@ -32,14 +33,30 @@ export class LoginRegisterPage {
       (response: LoginResponse) => {
         console.log(response);
         this.mediaProvider.loggedIn = true;
-        //TODO: save the token localstorage
-        // move to home page (navCtrl)
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userId', response.user.user_id.toString());
+        this.navCtrl.push(HomePage);
       },
       error => {
         console.log(error);
       });
   }
 
-  // TODO: register method
+  checkUsers() {
+    this.mediaProvider.checkUsers(this.user);
+
+  }
+
+  register() {
+    this.mediaProvider.register(this.user).subscribe(
+      (response: RegisterResponse) => {
+        this.mediaProvider.loggedIn = true;
+        this.navCtrl.push(HomePage);
+        console.log(response);
+
+      },
+    );
+
+  }
 
 }

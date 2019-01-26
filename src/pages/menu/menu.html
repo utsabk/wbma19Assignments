@@ -9,5 +9,5 @@
 <ion-tabs>
   <ion-tab [root]="homepage" tabIcon="home" ></ion-tab>
   <ion-tab [show]="!mediaProvider.loggedIn" [root]="loginRegister" tabTitle="Login" tabIcon="log-in"></ion-tab>
-  <ion-tab [show]="mediaProvider.loggedIn" [root]="logout" tabTitle="logout"></ion-tab>
+  <ion-tab [show]="mediaProvider.loggedIn" [root]="logout" tabTitle="logout" (click)="logout()" ></ion-tab>
 </ion-tabs>

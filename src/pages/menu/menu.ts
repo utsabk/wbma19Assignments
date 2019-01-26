@@ -22,11 +22,12 @@ export class MenuPage {
   loginRegister = LoginRegisterPage;
   logout = LogoutPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    public mediaProvider: MediaProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
-
 }

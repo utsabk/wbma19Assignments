@@ -22,12 +22,15 @@ export class HomePage {
 
   getAllFiles() {
     this.mediaProvider.getAllMedia().subscribe((result: Media[]) => {
-
+        console.log(result);
         result.forEach((pic: Media) => {
+          console.log(pic);
+
           this.mediaProvider.getSingleMedia(pic.file_id).
             subscribe((file: Media) => {
-              this.mediaArray.push(file);
               console.log(file);
+
+              this.mediaArray.push(file);
             });
         });
       }, (err) => {
