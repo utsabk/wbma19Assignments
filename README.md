@@ -10,7 +10,7 @@ Front-end all the assignments
 1. [Front-end 4 (A) - providers](https://github.com/utsabk/wbma19Assignments/tree/ionicProviders)
 1. [Front-end 4 (B) - providers](https://github.com/utsabk/wbma19Assignments/tree/ionicProviders-b)
 1. [Front-end 5- Routing & login](https://github.com/utsabk/wbma19Assignments/tree/IonicNavigation)
-1. [Front-end 6 - pipe]()
+1. [Front-end 6 - pipe](https://github.com/utsabk/wbma19Assignments/tree/Pipes)
 1. [Front-end 7: Forms]()
 1. [Front-end 8: File handling part 1]()
 1. [Front-end 9: File handling part 2]()
