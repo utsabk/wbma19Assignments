@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 import { Media } from '../../interfaces/pic';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-home',
@@ -9,7 +10,7 @@ import { Media } from '../../interfaces/pic';
 })
 export class HomePage {
 
-  mediaArray: Media[] = [];
+  mediaArray: Observable<Media[]>;
 
   constructor(
     private mediaProvider: MediaProvider, public navCtrl: NavController) {
@@ -21,22 +22,7 @@ export class HomePage {
   }
 
   getAllFiles() {
-    this.mediaProvider.getAllMedia().subscribe((result: Media[]) => {
-        console.log(result);
-        result.forEach((pic: Media) => {
-          console.log(pic);
-
-          this.mediaProvider.getSingleMedia(pic.file_id).
-            subscribe((file: Media) => {
-              console.log(file);
-
-              this.mediaArray.push(file);
-            });
-        });
-      }, (err) => {
-        console.log(err);
-      },
-    );
+    this.mediaArray = this.mediaProvider.getAllMedia();
   }
 
 }
