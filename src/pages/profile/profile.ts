@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoginRegisterPage } from '../login-register/login-register';
-import { Media } from '../../interfaces/pic';
 import { MediaProvider } from '../../providers/media/media';
+import { User } from '../../interfaces/user';
 
 /**
  * Generated class for the LogoutPage page.
@@ -17,7 +17,7 @@ import { MediaProvider } from '../../providers/media/media';
 })
 export class ProfilePage {
 
-  mediaFiles: Media [] = [];
+  userData: User = { username: null };
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -28,18 +28,15 @@ export class ProfilePage {
     console.log('ionViewDidLoad LogoutPage');
   }
 
-  backToWelcome() {
+  logout() {
+    localStorage.clear();
+    this.mediaProvider.loggedIn = false;
     this.navCtrl.setRoot(LoginRegisterPage);
   }
 
-  logout() {
-    localStorage.clear();
-    this.backToWelcome();
-  }
-
   media() {
-    this.mediaProvider.getAvatar().subscribe((response) => {
-        this.mediaFiles = response;
+    this.mediaProvider.getUserData().subscribe((response) => {
+        this.userData = response;
       },
       (err) => {
         console.log(err);

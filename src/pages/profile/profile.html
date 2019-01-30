@@ -12,9 +12,11 @@
 
 <ion-content>
   <form>
-    <div *ngFor="let data of mediaFiles">
+    <div *ngFor="let data of userData">
       <h1>Profile</h1>
-      <ion-avatar>[src] = " 'http://media.mw.metropolia.fi/wbma/media' + (data.filename)"</ion-avatar>
+      <ion-avatar>
+        <img [src]="'http://media.mw.metropolia.fi/wbma/uploads' + (data.filename)">
+      </ion-avatar>
       <h4>userId:{{data.user_id}}</h4>
       <h4>email:{{data.email}}</h4>
     </div>

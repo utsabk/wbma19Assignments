@@ -54,8 +54,8 @@ export class MediaProvider {
     return this.http.get(this.mediaApi + 'users/username/' + username);
   }
 
-  getAvatar() {
-    return this.http.get<Media []>(this.mediaApi + 'media/');
+  getUserData() {
+    return this.http.get<User>(this.mediaApi + 'users/user');
   }
 
 }

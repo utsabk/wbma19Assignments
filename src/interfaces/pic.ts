@@ -8,7 +8,6 @@ export interface Media {
   media_type: string;
   mime_type: string;
   time_added: string;
-  email?: string;
   screenshot?: string;
   thumbnails?: Thumbnail;
 }
