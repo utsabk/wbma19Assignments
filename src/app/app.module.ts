@@ -10,7 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { MediaProvider } from '../providers/media/media';
 import { MenuPage } from '../pages/menu/menu';
 import { LoginRegisterPage } from '../pages/login-register/login-register';
-import { LogoutPage } from '../pages/logout/logout';
+import { ProfilePage } from '../pages/profile/profile';
 import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { PipesModule } from '../pipes/pipes.module';
     HomePage,
     MenuPage,
     LoginRegisterPage,
-    LogoutPage
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import { PipesModule } from '../pipes/pipes.module';
     HomePage,
     MenuPage,
     LoginRegisterPage,
-    LogoutPage
+    ProfilePage
   ],
   providers: [
     StatusBar,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginRegisterPage } from '../login-register/login-register';
-import { LogoutPage } from '../logout/logout';
+import { ProfilePage } from '../profile/profile';
 import { MediaProvider } from '../../providers/media/media';
 
 /**
@@ -20,7 +20,7 @@ export class MenuPage {
 
   homepage = HomePage;
   loginRegister = LoginRegisterPage;
-  logout = LogoutPage;
+  profile = ProfilePage;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
