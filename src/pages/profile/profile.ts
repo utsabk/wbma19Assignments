@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { LoginRegisterPage } from '../login-register/login-register';
 import { MediaProvider } from '../../providers/media/media';
-import { User } from '../../interfaces/user';
 
 /**
  * Generated class for the LogoutPage page.
@@ -17,8 +15,6 @@ import { User } from '../../interfaces/user';
 })
 export class ProfilePage {
 
-  userData: User = { username: null };
-
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public mediaProvider: MediaProvider) {
@@ -31,15 +27,6 @@ export class ProfilePage {
   logout() {
     localStorage.clear();
     this.mediaProvider.loggedIn = false;
-    this.navCtrl.setRoot(LoginRegisterPage);
-  }
-
-  media() {
-    this.mediaProvider.getUserData().subscribe((response) => {
-        this.userData = response;
-      },
-      (err) => {
-        console.log(err);
-      });
+    this.navCtrl.parent.select(0);
   }
 }

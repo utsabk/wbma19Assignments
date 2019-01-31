@@ -13,8 +13,11 @@ import { LoginResponse, RegisterResponse, User } from '../../interfaces/user';
 export class MediaProvider {
 
   mediaApi = ' http://media.mw.metropolia.fi/wbma/';
+  mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
   loggedIn = false;
+
+  user: User = { username: null };
 
   constructor(public http: HttpClient) {
     console.log('Hello MediaProvider Provider');
@@ -54,8 +57,8 @@ export class MediaProvider {
     return this.http.get(this.mediaApi + 'users/username/' + username);
   }
 
-  getUserData() {
-    return this.http.get<User>(this.mediaApi + 'users/user');
+  getFilesByTag(tag) {
+    return this.http.get<Media[]>(this.mediaApi + 'tags/' + tag);
   }
 
 }

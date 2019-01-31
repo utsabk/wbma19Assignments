@@ -8,19 +8,27 @@
   <ion-navbar>
     <ion-title>Profile</ion-title>
   </ion-navbar>
+
+  <ion-buttons end>
+    <button ion-button block color="secondary" (click)="logout()">Logout
+      <ion-icon color="primary" name="log-out"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
-  <form>
-    <div *ngFor="let data of userData">
-      <h1>Profile</h1>
-      <ion-avatar>
-        <img [src]="'http://media.mw.metropolia.fi/wbma/uploads' + (data.filename)">
-      </ion-avatar>
-      <h4>userId:{{data.user_id}}</h4>
-      <h4>email:{{data.email}}</h4>
+  <ion-card class="card-background-page">
+    <img [src]="mediaProvider.mediaFilePath + ('profile' | getTagByUser | async| thumbnail:'large' | async)"/>
+
+    <div class="card-title">
+      {{mediaProvider.user?.username}}
     </div>
-  </form>
-  <button ion-button block color="secondary" (click)="logout()">Logout</button>
+    <div class="card-subtitle">
+      {{ mediaProvider.user?.full_name}}
+    </div>
+    <div class="card-subtitle">
+      {{ mediaProvider.user?.email}}
+    </div>
+  </ion-card>
 </ion-content>
 

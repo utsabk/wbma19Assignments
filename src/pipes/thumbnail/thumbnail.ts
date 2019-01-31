@@ -23,7 +23,7 @@ export class ThumbnailPipe implements PipeTransform {
   }
 
   async transform(id: number, ...args) {
-    console.log(args);
+    // console.log(args);
     // impure version
     /*
     if (this.cachedId !== id) {

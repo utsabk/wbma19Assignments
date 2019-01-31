@@ -31,7 +31,7 @@ export class LoginRegisterPage {
   login() {
     this.mediaProvider.login(this.user).subscribe(
       (response: LoginResponse) => {
-        console.log(response);
+        // console.log(response);
         this.mediaProvider.loggedIn = true;
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.user.user_id.toString());
@@ -52,7 +52,7 @@ export class LoginRegisterPage {
       (response: RegisterResponse) => {
         this.mediaProvider.loggedIn = true;
         this.navCtrl.push(HomePage);
-        console.log(response);
+        // console.log(response);
 
       },
     );
