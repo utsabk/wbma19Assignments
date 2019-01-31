@@ -4,9 +4,9 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header color="custom">
   <ion-navbar>
-    <ion-title>Profile</ion-title>
+    <ion-title text-center>Profile</ion-title>
   </ion-navbar>
 
   <ion-buttons end>
@@ -15,7 +15,7 @@
     </button>
   </ion-buttons>
 </ion-header>
-
+<!--
 <ion-content>
   <ion-card class="card-background-page">
     <img [src]="mediaProvider.mediaFilePath + ('profile' | getTagByUser | async| thumbnail:'large' | async)"/>
@@ -29,6 +29,32 @@
     <div class="card-subtitle">
       {{ mediaProvider.user?.email}}
     </div>
+  </ion-card>
+</ion-content> -->
+<ion-content padding>
+  <ion-card>
+
+    <ion-avatar>
+      <img [src]="mediaProvider.mediaFilePath + ('profile' | getTagByUser | async| thumbnail:'large' | async)">
+    </ion-avatar>
+
+    <ion-item>
+      <ion-card-content>
+
+        <ion-card-title text-center="">
+          {{mediaProvider.user?.username}}
+        </ion-card-title>
+
+        <ion-card-content>
+          {{ mediaProvider.user?.full_name}}
+        </ion-card-content>
+
+        <p text-center="">
+          {{ mediaProvider.user?.email}}
+        </p>
+
+      </ion-card-content>
+    </ion-item>
   </ion-card>
 </ion-content>
 
