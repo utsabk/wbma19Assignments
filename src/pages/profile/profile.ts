@@ -10,7 +10,7 @@ import { MediaProvider } from '../../providers/media/media';
  */
 
 @Component({
-  selector: 'page-logout',
+  selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {

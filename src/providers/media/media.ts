@@ -15,9 +15,10 @@ export class MediaProvider {
   mediaApi = ' http://media.mw.metropolia.fi/wbma/';
   mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
+
   loggedIn = false;
 
-  user: User = { username: null };
+  user: User = null;
 
   constructor(public http: HttpClient) {
     console.log('Hello MediaProvider Provider');
@@ -58,7 +59,7 @@ export class MediaProvider {
   }
 
   getFilesByTag(tag) {
+    // single file
     return this.http.get<Media[]>(this.mediaApi + 'tags/' + tag);
   }
-
 }

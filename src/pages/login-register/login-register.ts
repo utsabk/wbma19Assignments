@@ -34,7 +34,9 @@ export class LoginRegisterPage {
         // console.log(response);
         this.mediaProvider.loggedIn = true;
         localStorage.setItem('token', response.token);
-        localStorage.setItem('userId', response.user.user_id.toString());
+        localStorage.setItem('user_id', response.user.user_id.toString());
+        localStorage.setItem('email', response.user.email);
+        localStorage.setItem('fullName', response.user.full_name);
         this.navCtrl.push(HomePage);
       },
       error => {

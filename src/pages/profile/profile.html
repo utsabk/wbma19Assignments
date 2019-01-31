@@ -35,21 +35,21 @@
   <ion-card>
 
     <ion-avatar>
-      <img [src]="mediaProvider.mediaFilePath + ('profile' | getTagByUser | async| thumbnail:'large' | async)">
+      <img [src]="mediaProvider.mediaFilePath + ('profile' | getTagByUser | async| thumbnail | async)">
     </ion-avatar>
 
     <ion-item>
       <ion-card-content>
 
-        <ion-card-title text-center="">
+        <ion-card-title text-center="">username:
           {{mediaProvider.user?.username}}
         </ion-card-title>
 
-        <ion-card-content>
+        <ion-card-content>fullName:
           {{ mediaProvider.user?.full_name}}
         </ion-card-content>
 
-        <p text-center="">
+        <p text-center="">Email:
           {{ mediaProvider.user?.email}}
         </p>
 
