@@ -33,9 +33,14 @@ export class LoginRegisterPage {
       (response: LoginResponse) => {
         // console.log(response);
         this.mediaProvider.loggedIn = true;
+        // save the token to localstorage
         localStorage.setItem('token', response.token);
+        this.mediaProvider.user = response.user;
+
         localStorage.setItem('userId', response.user.user_id.toString());
-        this.navCtrl.push(HomePage);
+        // move to the home page (use navCtrl)
+
+        this.navCtrl.parent.select(0);
       },
       error => {
         console.log(error);

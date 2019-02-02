@@ -23,11 +23,11 @@ export class GetTagByUserPipe implements PipeTransform {
 
           console.log(response);
           // console.log(this.mediaProvider.user.user_id);
-          /*if (response.user_id === this.mediaProvider.user.user_id) {
+          if (response.user_id === this.mediaProvider.user.user_id) {
             resolve(response.file_id);
           } else {
             reject('No profile image added.');
-          }*/
+          }
 
         });
 
