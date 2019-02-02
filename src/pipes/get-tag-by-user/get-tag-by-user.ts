@@ -21,7 +21,7 @@ export class GetTagByUserPipe implements PipeTransform {
         responses.forEach((response: Media) => {
           resolve(response.file_id);
 
-          console.log(response);
+          // console.log(response);
           // console.log(this.mediaProvider.user.user_id);
           if (response.user_id === this.mediaProvider.user.user_id) {
             resolve(response.file_id);
