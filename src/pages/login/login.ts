@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
-import { LoginResponse, RegisterResponse, User } from '../../interfaces/user';
-import { HomePage } from '../home/home';
+import { LoginResponse, User } from '../../interfaces/user';
+import { RegisterPage } from '../register/register';
 
 /**
  * Generated class for the LoginRegisterPage page.
@@ -12,10 +12,10 @@ import { HomePage } from '../home/home';
  */
 
 @Component({
-  selector: 'page-login-register',
-  templateUrl: 'login-register.html',
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
-export class LoginRegisterPage {
+export class LoginPage {
   user: User = { username: null };
 
   constructor(
@@ -31,34 +31,26 @@ export class LoginRegisterPage {
   login() {
     this.mediaProvider.login(this.user).subscribe(
       (response: LoginResponse) => {
+
         // console.log(response);
         this.mediaProvider.loggedIn = true;
+
+        // save the token to localstorage
         localStorage.setItem('token', response.token);
-        localStorage.setItem('user_id', response.user.user_id.toString());
-        localStorage.setItem('email', response.user.email);
-        localStorage.setItem('fullName', response.user.full_name);
-        this.navCtrl.push(HomePage);
+        this.mediaProvider.user = response.user;
+
+        localStorage.setItem('userId', response.user.user_id.toString());
+
+        // move to the home page (use navCtrl)
+        this.navCtrl.parent.select(0);
       },
       error => {
         console.log(error);
       });
   }
 
-  checkUsers() {
-    this.mediaProvider.checkUsers(this.user);
-
-  }
-
-  register() {
-    this.mediaProvider.register(this.user).subscribe(
-      (response: RegisterResponse) => {
-        this.mediaProvider.loggedIn = true;
-        this.navCtrl.push(HomePage);
-        // console.log(response);
-
-      },
-    );
-
+  createAccount() {
+    this.navCtrl.push(RegisterPage);
   }
 
 }

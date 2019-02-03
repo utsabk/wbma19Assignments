@@ -9,16 +9,18 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MediaProvider } from '../providers/media/media';
 import { MenuPage } from '../pages/menu/menu';
-import { LoginRegisterPage } from '../pages/login-register/login-register';
+import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { PipesModule } from '../pipes/pipes.module';
+import { RegisterPage } from '../pages/register/register';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     MenuPage,
-    LoginRegisterPage,
+    LoginPage,
+    RegisterPage,
     ProfilePage
   ],
   imports: [
@@ -32,7 +34,8 @@ import { PipesModule } from '../pipes/pipes.module';
     MyApp,
     HomePage,
     MenuPage,
-    LoginRegisterPage,
+    LoginPage,
+    RegisterPage,
     ProfilePage
   ],
   providers: [
