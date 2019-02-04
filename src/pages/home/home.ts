@@ -17,7 +17,7 @@ export class HomePage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
     this.getAllFiles();
   }
 

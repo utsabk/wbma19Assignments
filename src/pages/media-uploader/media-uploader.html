@@ -1,0 +1,41 @@
+<!--
+  Generated template for the MediaUploaderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>UploadMedia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form (submit)="upload()">
+
+    <ion-item>
+      <ion-input type="text" name="title" [(ngModel)]="title" placeholder="Text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" name="description" [(ngModel)]="description" placeholder="Description Example"></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-input type="file" (change)="handleChange($event)" placeholder="Choose Media Files"></ion-input>
+    </ion-item>
+
+    <button class="submit-btn" ion-button full type="submit" color="primary">Upload</button>
+
+
+  </form>
+
+  <ion-card>
+    <img #preview [src]="fileData">
+  </ion-card>
+
+</ion-content>

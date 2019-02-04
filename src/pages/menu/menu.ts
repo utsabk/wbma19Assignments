@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { ProfilePage } from '../profile/profile';
 import { MediaProvider } from '../../providers/media/media';
+import { MediaUploaderPage } from '../media-uploader/media-uploader';
 
 /**
  * Generated class for the MenuPage page.
@@ -21,6 +22,7 @@ export class MenuPage {
   homepage = HomePage;
   login = LoginPage;
   profile = ProfilePage;
+  upload = MediaUploaderPage;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,

@@ -15,7 +15,6 @@ export class MediaProvider {
   mediaApi = ' http://media.mw.metropolia.fi/wbma/';
   mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
-
   loggedIn = false;
 
   user: User = null;
@@ -40,6 +39,17 @@ export class MediaProvider {
       ),
     };
     return this.http.post<LoginResponse>(this.mediaApi + 'login', user,
+      httpOptions);
+  }
+
+  upload(data: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'x-access-token': localStorage.getItem('token'),
+        },
+      ),
+    };
+    return this.http.post<LoginResponse>(this.mediaApi + 'media', data,
       httpOptions);
   }
 

@@ -13,6 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { PipesModule } from '../pipes/pipes.module';
 import { RegisterPage } from '../pages/register/register';
+import { MediaUploaderPage } from '../pages/media-uploader/media-uploader';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RegisterPage } from '../pages/register/register';
     MenuPage,
     LoginPage,
     RegisterPage,
+    MediaUploaderPage,
     ProfilePage
   ],
   imports: [
@@ -36,6 +38,7 @@ import { RegisterPage } from '../pages/register/register';
     MenuPage,
     LoginPage,
     RegisterPage,
+    MediaUploaderPage,
     ProfilePage
   ],
   providers: [
