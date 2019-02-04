@@ -61,7 +61,11 @@ export class MediaUploaderPage {
     this.mediaProvider.upload(fd).subscribe(resp => {
       console.log(resp);
       // TODO: setTimeout 2 secs
-      this.navCtrl.pop().catch();
+      setTimeout(() => {
+          this.navCtrl.pop().catch();
+        },
+        2000
+      );
       // TODO: hide spinner
     });
   }

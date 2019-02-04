@@ -3,9 +3,13 @@
     <ion-title>
       Ionic Blank
     </ion-title>
-    <button ion-button (click)="uploadFiles()">
-      <ion-icon name="cloud-upload"></ion-icon>
-    </button>
+
+    <ion-buttons end>
+      <button ion-button end color="royal" (click)="uploadFiles()">
+        <ion-icon name="cloud-upload"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +17,8 @@
   <ion-list>
     <ion-item *ngFor="let image of mediaArray | async">
       <ion-thumbnail item-start>
-        <img [alt]="image.title" [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.file_id | thumbnail: 'medium' | async)">
+        <img [alt]="image.title"
+             [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.file_id | thumbnail: 'medium' | async)">
       </ion-thumbnail>
       <h2>{{image.title}}</h2>
       <p>{{image.time_added | date: ('dd.MM.yy')}}</p>

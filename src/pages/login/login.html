@@ -56,7 +56,7 @@
 
             <ion-item>
               <ion-label *ngIf="userAlert" color="danger" stacked>User Exists!</ion-label>
-              <ion-input required type="text" #username (ionBlur)="checkUserExists()" [ngModel]="user.username"
+              <ion-input required type="text" #username (change)="checkUserExists($event)" [ngModel]="user.username"
                          name="username" placeholder="Username" pattern=".{3,}"></ion-input>
             </ion-item>
 
