@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
-import { LoginResponse, User } from '../../interfaces/user';
-import { RegisterPage } from '../register/register';
+import {
+  LoginResponse,
+  RegisterResponse,
+  User,
+  userExists,
+} from '../../interfaces/user';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the LoginRegisterPage page.
@@ -16,16 +21,73 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user: User = { username: null };
+  @ViewChild('username') usernameInput;
+
+  userAlert = false;
+
+  showRegister = false;
+
+  confirmPassword = '';
+
+  user: any = {};
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public mediaProvider: MediaProvider) {
+    public mediaProvider: MediaProvider,
+    public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginRegisterPage');
+  }
+
+  swapForm() {
+    this.showRegister = !this.showRegister;
+  }
+
+  showAlert(message) {
+    const alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: message,
+      buttons: ['OK'],
+    });
+    alert.present().catch();
+  }
+
+  checkUserExists() {
+    this.mediaProvider.checkUsers(this.user.username).
+      subscribe((data: userExists) => {
+        console.log(data.available);
+        if (!data.available) {
+          this.userAlert = true;
+          this.usernameInput.clearInput = true;
+        } else {
+          this.userAlert = false;
+        }
+      });
+
+  }
+
+  passwordCheck() {
+    console.log(this.user.password);
+    console.log(this.confirmPassword);
+    if (this.user.password !== this.confirmPassword) {
+      this.showAlert('Password do not match');
+      return;
+    }
+  }
+
+  register() {
+    this.mediaProvider.register(this.user).subscribe(
+      (data: RegisterResponse) => {
+        this.login();
+      }, error => {
+        console.log(error);
+        this.showAlert(error.error.message);
+      },
+    );
+
   }
 
   login() {
@@ -47,10 +109,6 @@ export class LoginPage {
       error => {
         console.log(error);
       });
-  }
-
-  createAccount() {
-    this.navCtrl.push(RegisterPage);
   }
 
 }
