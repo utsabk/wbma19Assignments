@@ -4,7 +4,6 @@ import { MediaProvider } from '../../providers/media/media';
 import {
   LoginResponse,
   RegisterResponse,
-  User,
   userExists,
 } from '../../interfaces/user';
 import { AlertController } from 'ionic-angular';
@@ -22,6 +21,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
   @ViewChild('username') usernameInput;
+  @ViewChild('registerForm') form: any;
 
   userAlert = false;
 
@@ -82,6 +82,7 @@ export class LoginPage {
     this.mediaProvider.register(this.user).subscribe(
       (data: RegisterResponse) => {
         this.login();
+        this.form.reset();
       }, error => {
         console.log(error);
         this.showAlert(error.error.message);

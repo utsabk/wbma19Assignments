@@ -56,21 +56,21 @@
 
             <ion-item>
               <ion-label *ngIf="userAlert" color="danger" stacked>User Exists!</ion-label>
-              <ion-input required type="text" #username (change)="checkUserExists($event)" [ngModel]="user.username"
+              <ion-input required type="text" #username (change)="checkUserExists($event)" [(ngModel)]="user.username"
                          name="username" placeholder="Username" pattern=".{3,}"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input required type="email" [ngModel]="user.email" name="email" placeholder="Email"></ion-input>
+              <ion-input required type="email" [(ngModel)]="user.email" name="email" placeholder="Email"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input required type="password" [ngModel]="user.password" pattern=".{5,}" name="password"
+              <ion-input required type="password" [(ngModel)]="user.password" pattern=".{5,}" name="password"
                          placeholder="Password"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input required type="password" [ngModel]="confirmPassword" name="confirmPassword"
+              <ion-input required type="password" [(ngModel)]="confirmPassword" name="confirmPassword"
                          placeholder="Confirm Password" (change)="passwordCheck($event)"></ion-input>
             </ion-item>
 
