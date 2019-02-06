@@ -77,7 +77,7 @@ export class MediaUploaderPage {
       // setTimeout 2 secs
       setTimeout(() => {
           // hide spinner
-          this.loading.dismiss();
+          this.loading.dismiss().catch();
           this.navCtrl.pop().catch();
         },
         2000,
