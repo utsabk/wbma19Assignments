@@ -33,8 +33,36 @@
 
   </form>
 
-  <ion-card>
-    <img #preview [src]="fileData">
+  <ion-card *ngIf="file">
+    <img #preview [src]="fileData"
+    [ngStyle]="{'filter': 'brightness('+filters.brightness/100+') contrast('+filters.contrast/100+') saturate('+filters.saturation/100+') sepia('+filters.warmth/100+')'} ">
+    <div *ngIf="file.type.includes('image')">
+      <ion-item>
+        <ion-range min="0" max="200" [(ngModel)]="filters.brightness">
+          <ion-icon range-left name="sunny" color="primary"></ion-icon>
+          <ion-icon range-right name="sunny" color="primary"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range min="0" max="200" color="dark" [(ngModel)]="filters.contrast">
+          <ion-icon range-left name="contrast"></ion-icon>
+          <ion-icon range-right name="contrast"></ion-icon>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-range min="0" max="200" color="secondary" [(ngModel)]="filters.saturation">
+          <ion-icon range-left name="water" color="secondary"></ion-icon>
+          <ion-icon range-right name="water" color="secondary"></ion-icon>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-range min="0" max="100" step="10" snaps color="danger" [(ngModel)]="filters.warmth">
+          <ion-icon range-left name="thermometer" color="danger"></ion-icon>
+          <ion-icon range-right name="thermometer" color="danger"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </div>
   </ion-card>
 
 </ion-content>

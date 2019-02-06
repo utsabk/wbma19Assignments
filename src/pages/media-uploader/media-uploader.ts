@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { LoadingController, NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 
 /**
@@ -20,13 +20,26 @@ export class MediaUploaderPage {
   title = '';
   description = '';
 
+  filters = {
+    brightness: 100,
+    contrast: 100,
+    saturation: 100,
+    warmth: 100,
+  };
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    public mediaProvider: MediaProvider) {
+    public mediaProvider: MediaProvider,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
   }
+
+  loading = this.loadingCtrl.create({
+    spinner: 'ios',
+    content: 'Your file is uploading...',
+  });
 
   handleChange($event) {
     this.file = $event.target.files[0];
@@ -36,7 +49,7 @@ export class MediaUploaderPage {
   showPreview() {
     const reader = new FileReader();
     reader.onloadend = (evt) => {
-      // console.log(reader.result);
+      console.log(reader.result);
       this.fileData = reader.result;
     };
 
@@ -50,23 +63,25 @@ export class MediaUploaderPage {
   }
 
   upload() {
-    // const desc = `<description>${this.description}</description>`;
-    // const filters = '<filters>filtersAsText</filters>';
-
+    const description = `[d]${this.description}[/d]`;
+    const filters = `[f]${JSON.stringify(this.filters)}[/f]`;
     // show spinner
+    this.loading.present().catch();
+
     const fd = new FormData();
     fd.append('title', this.title);
-    fd.append('description', this.description);
+    fd.append('description', description + filters);
     fd.append('file', this.file);
     this.mediaProvider.upload(fd).subscribe(resp => {
-      console.log(resp);
-      // TODO: setTimeout 2 secs
+
+      // setTimeout 2 secs
       setTimeout(() => {
+          // hide spinner
+          this.loading.dismiss();
           this.navCtrl.pop().catch();
         },
-        2000
+        2000,
       );
-      // TODO: hide spinner
     });
   }
 }

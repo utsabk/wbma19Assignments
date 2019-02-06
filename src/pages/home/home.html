@@ -4,7 +4,7 @@
       Ionic Blank
     </ion-title>
 
-    <ion-buttons end>
+    <ion-buttons end *ngIf="mediaProvider.loggedIn">
       <button ion-button end color="royal" (click)="uploadFiles()">
         <ion-icon name="cloud-upload"></ion-icon>
       </button>
