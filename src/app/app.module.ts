@@ -13,6 +13,8 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { PipesModule } from '../pipes/pipes.module';
 import { MediaUploaderPage } from '../pages/media-uploader/media-uploader';
+import { Chooser } from '@ionic-native/chooser';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { MediaUploaderPage } from '../pages/media-uploader/media-uploader';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MediaProvider,
+    Chooser,
+    Camera,
   ],
 })
 export class AppModule {

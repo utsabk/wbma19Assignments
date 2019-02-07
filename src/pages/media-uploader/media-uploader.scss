@@ -6,5 +6,9 @@ page-media-uploader {
     border: 1px solid #ffffff;
   }
 
+  input:invalid {
+    border: 1px solid #ff0c6b;
+  }
+
 
 }

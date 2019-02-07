@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LoadingController, NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
+import { Chooser } from '@ionic-native/chooser';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the MediaUploaderPage page.
@@ -14,11 +16,14 @@ import { MediaProvider } from '../../providers/media/media';
   templateUrl: 'media-uploader.html',
 })
 export class MediaUploaderPage {
+  @ViewChild('uploadForm') myForm: any;
   fileData = '';
   file: File;
   type = '';
   title = '';
   description = '';
+  myBlob;
+  myImage: any;
 
   filters = {
     brightness: 100,
@@ -30,7 +35,9 @@ export class MediaUploaderPage {
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public mediaProvider: MediaProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public chooser: Chooser,
+    public camera: Camera) {
   }
 
   ionViewDidLoad() {
@@ -83,5 +90,37 @@ export class MediaUploaderPage {
         2000,
       );
     });
+  }
+
+  reset() {
+    this.myForm.reset();
+    this.fileData = null;
+  }
+
+  uploadData() {
+    this.chooser.getFile('image/*, video/*, audio/*').then(file => {
+      console.log(file ? file.name : 'canceled');
+      this.myBlob = new Blob([file.data], { type: file.mediaType });
+    }).catch((error: any) => console.error(error));
+  }
+
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then(
+      imageData => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        this.myImage = "data:image/jpeg;base64," + imageData;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
