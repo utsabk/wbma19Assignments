@@ -53,6 +53,35 @@ export class MediaUploaderPage {
     this.showPreview();
   }
 
+  choosePicture() {
+    this.chooser.getFile('image/*, video/*, audio/*').then(file => {
+      console.log(file ? file.name : 'canceled');
+      console.log(file);
+      this.myBlob = new Blob([file.data], { type: file.mediaType });
+
+    }).catch((error: any) => console.error(error));
+  }
+
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+    };
+
+    this.camera.getPicture(options).then(
+      imageData => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        this.myImage = 'data:image/jpeg;base64,' + imageData;
+      },
+      err => {
+        console.log(err);
+      },
+    );
+  }
+
   showPreview() {
     const reader = new FileReader();
     reader.onloadend = (evt) => {
@@ -78,7 +107,11 @@ export class MediaUploaderPage {
     const fd = new FormData();
     fd.append('title', this.title);
     fd.append('description', description + filters);
-    fd.append('file', this.file);
+    // fd.append('file', this.file);
+    // fd.append('file', this.myBlob);
+    fd.append('file', this.myImage);
+
+
     this.mediaProvider.upload(fd).subscribe(resp => {
 
       // setTimeout 2 secs
@@ -100,31 +133,5 @@ export class MediaUploaderPage {
     this.file = null;
   }
 
-  uploadData() {
-    this.chooser.getFile('image/*, video/*, audio/*').then(file => {
-      console.log(file ? file.name : 'canceled');
-      console.log(file);
-      this.myBlob = new Blob([file.data], { type: file.mediaType });
-    }).catch((error: any) => console.error(error));
-  }
 
-  takePicture() {
-    const options: CameraOptions = {
-      quality: 70,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-    };
-
-    this.camera.getPicture(options).then(
-      imageData => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        this.myImage = 'data:image/jpeg;base64,' + imageData;
-      },
-      err => {
-        console.log(err);
-      },
-    );
-  }
 }
