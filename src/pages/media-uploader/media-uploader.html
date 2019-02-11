@@ -24,18 +24,19 @@
       <ion-input type="text" name="description" [(ngModel)]="description" placeholder="Description Example" minlength="10"></ion-input>
     </ion-item>
 
-    <button class="submit-btn" ion-button full type="button" (click)="takePicture()">Take a Pic</button>
+    <button class="myBtn" ion-button full type="button" (click)="takePicture()">Take a Pic</button>
     <p align="center"><img src="{{ myImage }}" /></p>
 
     <ion-item>
-      <button type="button" (click)="uploadData()"  accept="image/*, video/*, audio/*">Choose</button>
+      <button class="myBtn" type="button" (click)="uploadData()"  accept="image/*, video/*, audio/*">Choose From Gallery</button>
     </ion-item>
-    <!--<ion-item>
+
+    <!-- <ion-item>
       <ion-input type="file" (change)="handleChange($event)" placeholder="Choose Media Files" accept="image/*, video/*, audio/*"></ion-input>
     </ion-item> -->
 
-    <button class="submit-btn" ion-button full type="submit" color="primary" [disabled]="!uploadForm.form.valid">Upload</button>
-    <button class="submit-btn" ion-button full type="button" color="secondary" (click)="reset()"> Reset</button>
+    <button class="myBtn" ion-button full type="submit" color="primary" [disabled]="!uploadForm.form.valid">Upload</button>
+    <button class="myBtn" ion-button full type="button" color="secondary" (click)="reset()"> Reset</button>
 
 
   </form>

@@ -89,17 +89,21 @@ export class MediaUploaderPage {
         },
         2000,
       );
+    }, error => {
+      console.log(error);
     });
   }
 
   reset() {
     this.myForm.reset();
     this.fileData = null;
+    this.file = null;
   }
 
   uploadData() {
     this.chooser.getFile('image/*, video/*, audio/*').then(file => {
       console.log(file ? file.name : 'canceled');
+      console.log(file);
       this.myBlob = new Blob([file.data], { type: file.mediaType });
     }).catch((error: any) => console.error(error));
   }
@@ -109,18 +113,18 @@ export class MediaUploaderPage {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
     };
 
     this.camera.getPicture(options).then(
       imageData => {
         // imageData is either a base64 encoded string or a file URI
         // If it's base64 (DATA_URL):
-        this.myImage = "data:image/jpeg;base64," + imageData;
+        this.myImage = 'data:image/jpeg;base64,' + imageData;
       },
       err => {
         console.log(err);
-      }
+      },
     );
   }
 }
