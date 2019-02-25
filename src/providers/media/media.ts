@@ -17,6 +17,8 @@ export class MediaProvider {
 
   loggedIn = false;
 
+  refresh = true;
+
   user: User = null;
 
   constructor(public http: HttpClient) {
@@ -71,5 +73,13 @@ export class MediaProvider {
   getFilesByTag(tag) {
     // single file
     return this.http.get<Media[]>(this.mediaApi + 'tags/' + tag);
+  }
+
+  getUser(id, token) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', token)
+    };
+    return this.http.get(this.mediaApi + id, setting);
+
   }
 }

@@ -84,7 +84,10 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <allow-navigation href="http://86.50.10.152:8100" sessionid="8efaa67b" />
     <plugin name="cordova-plugin-chooser" spec="1.2.5" />
-    <plugin name="cordova-plugin-camera" spec="4.0.0" />
+    <plugin name="com-sarriaroman-photoviewer" spec="1.1.18" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-plugin-camera" spec="4.0.0" />
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
 </widget>

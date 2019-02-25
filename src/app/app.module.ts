@@ -15,6 +15,10 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MediaUploaderPage } from '../pages/media-uploader/media-uploader';
 import { Chooser } from '@ionic-native/chooser';
 import { Camera } from '@ionic-native/camera';
+import { FileTransferObject } from '@ionic-native/file-transfer';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { PlayerPage } from '../pages/player/player';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,14 @@ import { Camera } from '@ionic-native/camera';
     MenuPage,
     LoginPage,
     ProfilePage,
-    MediaUploaderPage
+    PlayerPage,
+    MediaUploaderPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     PipesModule,
+    PinchZoomModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -38,15 +44,18 @@ import { Camera } from '@ionic-native/camera';
     MenuPage,
     LoginPage,
     ProfilePage,
-    MediaUploaderPage
+    MediaUploaderPage,
+    PlayerPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MediaProvider,
+    PhotoViewer,
     Chooser,
     Camera,
+    FileTransferObject,
   ],
 })
 export class AppModule {

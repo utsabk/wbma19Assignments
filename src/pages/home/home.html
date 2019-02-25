@@ -18,12 +18,15 @@
     <ion-item *ngFor="let image of mediaArray | async">
       <ion-thumbnail item-start>
         <img [alt]="image.title"
-             [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.file_id | thumbnail: 'medium' | async)">
+             [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.file_id | thumbnail | async)">
       </ion-thumbnail>
       <h2>{{image.title}}</h2>
       <p>{{image.time_added | date: ('dd.MM.yy')}}</p>
       <p>{{image.description}}</p>
-      <button ion-button clear item-end>View</button>
+      <button ion-button clear item-end (click)="showFile(image.file_id)">View</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button full (click)="loadMore()">Load More.....</button>
     </ion-item>
   </ion-list>
 

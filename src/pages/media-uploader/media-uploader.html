@@ -14,7 +14,7 @@
 
 <ion-content padding>
 
-  <form (submit)="upload()" #uploadForm="ngForm">
+  <form (submit)="dataURItoBlob(myImage)" #uploadForm="ngForm">
 
     <ion-item>
       <ion-input type="text" name="title" [(ngModel)]="title" placeholder="Text" minlength="2" required></ion-input>

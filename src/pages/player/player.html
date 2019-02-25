@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  <ion-card *ngIf="file">
+    <ion-item>
+      <h2>{{file.title}}</h2>
+    </ion-item>
+    <pinch-zoom *ngIf="type === 'image'">
+      <img #image [src]="this.mediaProvider.mediaFilePath + file.filename" [alt]="file.title"
+           [ngStyle]="{'filter': 'brightness('+(file.description | filters).brightness/100+') contrast('+(file.description | filters).contrast/100+') saturate('+(file.description | filters).saturation/100+') sepia('+(file.description | filters).warmth/100+')'}">
 
+    </pinch-zoom>
+    <video *ngIf="type === 'video'" [src]="this.mediaProvider.mediaFilePath + file.filename" controls
+           [poster]="this.mediaProvider.mediaFilePath + file.screenshot"></video>
+
+    <audio *ngIf="type === 'audio'" [src]="this.mediaProvider.mediaFilePath + file.filename" controls></audio>
+
+    <ion-card-content *ngIf="user">
+      <p>{{file.description | description}}</p>
+      <h3>By: {{ user.username }}</h3>
+      <p>{{ user.email }}</p>
+      <button ion-button>
+        <ion-icon name="thumbs-up"></ion-icon>
+      </button>
+      <span>Likes: {{likes}}</span>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
